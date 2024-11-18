@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.UserMapper">
+
+    <insert id="save" parameterType="User">
+        INSERT INTO TB_USER (USER_ID, USER_PASSWORD, USER_NAME, USER_AUTH)
+        VALUES (#{userId}, #{userPassword}, #{userName}, #{userAuth})
+    </insert>
+
+    <select id="findById" parameterType="string" resultType="User">
+        SELECT USER_ID, USER_PASSWORD, USER_NAME, USER_AUTH
+        FROM TB_USER
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <update id="update" parameterType="User">
+        UPDATE TB_USER
+        SET USER_PASSWORD = #{userPassword},
+            USER_NAME = #{userName}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM TB_USER WHERE USER_ID = #{userId}
+    </delete>
+
+</mapper>
